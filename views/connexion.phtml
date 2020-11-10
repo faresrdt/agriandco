@@ -1,0 +1,97 @@
+<div id="connexion_inscription_block">
+
+<!--- AFFICHAGE DES MESSAGES D'ERREUR PAR PHP --->
+<?php if (isset($_SESSION['message'])) : ?>
+    <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
+        <div class="alert_error">
+            <p><?= $_SESSION['message'] ?></p>
+        </div>
+    <?php else : ?>
+        <div class="alert_success">
+            <p><?= $_SESSION['message'] ?></p>
+        </div>
+    <?php endif; ?>
+
+    <?php unset($_SESSION['message']); ?>
+<?php endif; ?>
+
+<form action="index.php?ctrl=user&task=logIn" method="post" id="logIn_form">
+    <fieldset>
+        <legend>Connectez-vous</legend>
+        <div id="login_mail_div" class="contact_form_div">
+            <label for="mail">E-mail</label>
+            <input type="text" name="mail" id="login_mail" class="E-mail" placeholder="andre.dupont@gmail.com" required>
+        </div>
+
+        <div id="password_div" class="contact_form_div">
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="login_password" class="Mot de passe" placeholder="Mot de passe" pattern="[A-Za-z0-9]+" required>
+        </div>
+
+        <div class="contact_btn center">
+            <button type="submit" id="login_btn" class="btn logIn_form">Connexion</button>
+        </div>
+
+    </fieldset>
+
+</form>
+
+
+<h3>OU</h3>
+
+
+
+<!--- FORMULAIRE D'INSCRIPTION --->
+
+<!--- AFFICHAGE DES MESSAGES D'ERREUR PAR PHP --->
+<?php if (isset($_SESSION['message'])) : ?>
+    <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
+        <div class="alert_error">
+            <p><?= $_SESSION['message'] ?></p>
+        </div>
+    <?php else : ?>
+        <div class="alert_success">
+            <p><?= $_SESSION['message'] ?></p>
+        </div>
+    <?php endif; ?>
+
+    <?php unset($_SESSION['message']); ?>
+<?php endif; ?>
+
+<!--- FIN D'AFFICHAGE DES MESSAGES D'ERREUR PAR PHP --->
+
+
+<form action="index.php?ctrl=user&task=create&page=sign&pageTitle=Félicitation" method="post" id="signIn_form">
+
+    <fieldset>
+        <legend>Inscrivez-vous</legend>
+        <div id="name_div" class="contact_form_div">
+            <label for="name">Nom</label>
+            <input type="text" name="name" id="signin_name" class="Nom" placeholder="Dupont" <?php if (isset($_POST['nom'])) : ?> value="<?= $_POST['nom'] ?> <?php endif; ?>" pattern="[A-Za-z0-9]+" required>
+        </div>
+
+        <div id="firstname_div" class="contact_form_div">
+            <label for="firstname">Prénom</label>
+            <input type="text" name="firstname" id="signin_firstname" class="Prénom" placeholder="André" <?php if (isset($_POST['prenom'])) : ?> value="<?= $_POST['prenom'] ?> <?php endif; ?>" pattern="[A-Za-z0-9]+" required>
+        </div>
+
+        <div id="signin_mail_div" class="contact_form_div">
+            <label for="mail">E-mail</label>
+            <input type="email" name="mail" id="signin_mail" class="E-mail" placeholder="andre.dupont@gmail.com" <?php if (isset($_POST['mail'])) : ?> value="<?= $_POST['mail'] ?> <?php endif; ?>" required>
+        </div>
+
+
+        <div id="password_div" class="contact_form_div">
+            <label for="password">Mot de passe</label>
+            <input type="password" name="password" id="signin_password" class="Mot de passe" placeholder="8 caractères minimum" minlength="8" maxlength="20" pattern="[A-Za-z0-9]+" required>
+        </div>
+
+        <div class="contact_btn center">
+            <button type="submit" id="signin_btn" class="btn signIn_form">Inscription</button>
+
+        </div>
+
+    </fieldset>
+</form>
+
+</div>

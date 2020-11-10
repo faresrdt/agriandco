@@ -1,0 +1,105 @@
+<!--- PARTIE ADMIN --->
+
+<?php if (isset($_SESSION['status']) and $_SESSION['role'] === "admin") : ?>
+
+    <form enctype="multipart/form-data" action="index.php?ctrl=produits&task=update&page=produit&id=<?= $item['id'] ?>" id="update_product_form" method="post">
+        <h1>Modification du produit</h1>
+        <div id="update_product center">
+            <fieldset>
+                <input type="hidden" name="id" id="id" value="<?= $item['id'] ?>">
+                <div id="update_product_title">
+                    <label for="title">Titre :</label>
+                    <input type="text" value="<?= $item['title'] ?>" class="Titre" name="title">
+                </div>
+
+                <div id="update_product_img">
+                    <label for="img">Image :</label>
+                    <div><img src="library/img/produits/<?= $item['img'] ?>" alt="<?= $item['title'] ?>"></div>
+                    <input class="input_update_img" type="file" name="img" id="img" accept=".jpg,.jpeg,.png">
+                </div>
+
+                <div id="update_product_content" class="formDiv">
+                    <label for="content">Contenu :</label>
+                    <textarea class="Contenu" name="content" id="content" cols="30" rows="10"><?= $item['content'] ?></textarea>
+                </div>
+
+                <div id="update_product_story" class="formDiv">
+                    <label for="story">Story :</label>
+                    <textarea class="Story" name="story" id="story" cols="30" rows="10"><?= $item['story'] ?></textarea>
+                </div>
+
+                <div id="update_product_saison" class="formDiv">
+                    <label for="saison">Saison :</label>
+                    <textarea class="Saison" name="saison" id="saison" cols="30" rows="10"><?= $item['saison'] ?></textarea>
+                </div>
+
+                <div id="update_product_type">
+                    <label for="fruit">Fruit</label>
+                    <?php if ($item['type'] === "fruit") : ?>
+                        <input type="radio" name="type" id="fruit" value="fruit" checked>
+                    <?php else : ?>
+                        <input type="radio" name="type" id="fruit" value="fruit">
+                    <?php endif; ?>
+
+                    <label for="legume">Légume</label>
+                    <?php if ($item['type'] === "legume") : ?>
+                        <input type="radio" name="type" id="legume" value="legume" checked>
+                    <?php else : ?>
+                        <input type="radio" name="type" id="legume" value="legume">
+                    <?php endif; ?>
+                </div>
+
+                <div id="update_product_stock">
+                    <label for="stock">Stock :</label>
+                    <input class="Stock" type="number" name="stock" id="stock" value="<?= $item['stock'] ?>">
+                </div>
+
+
+
+                <button class="btn update_product_form">Mettre à jour</button>
+            </fieldset>
+        </div>
+    </form>
+
+<?php else : ?>
+
+    <!--- PARTIE USER --->
+
+    <?php if (isset($_SESSION['message'])) : ?>
+        <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
+            <div class="alert_error">
+                <p><?= $_SESSION['message'] ?></p>
+            </div>
+        <?php else : ?>
+            <div class="alert_success">
+                <p><?= $_SESSION['message'] ?></p>
+            </div>
+        <?php endif; ?>
+
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
+
+    <h1 id="product_title" class="center"><?= $item['title'] ?></h1>
+    <p class="center"><img src="library/img/produits/<?= $item['img'] ?>" alt="<?= $item['title'] ?>"></p>
+
+    <h3>En bref</h3>
+    <p><?= $item['story'] ?></p>
+
+    <h3>Quelques infos</h3>
+    <p><?= $item['content'] ?></p>
+
+    <h3>La saison</h3>
+    <?= $item['saison'] ?>.
+
+    <h3>Le stock</h3>
+    <p><?= $item['stock'] ?> kg encore disponible.</p>
+
+    <!--- CONDITION POUR AFFICHER LE BOUTON, IL FAUT ÊTRE CONNECTER POUR AJOUTER A UNE LISTE --->
+    <?php if (isset($_SESSION['status']) and $_SESSION['status'] === "connected") : ?>
+        <div class="forBtn center">
+            <button class="btn"><a href="index.php?ctrl=user&task=addFav&favName=<?= $item['title'] ?>&page=userSpace&pageTitle=<?= $item['title'] ?>&id=<?= $item['id'] ?>" title="Ajouter aux favoris">Ajouter à ma favoris</a></button>
+        </div>
+    <?php endif; ?>
+
+
+<?php endif; ?>

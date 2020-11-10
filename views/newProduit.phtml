@@ -1,0 +1,47 @@
+<h1>Ajouter un nouveau produit</h1>
+
+
+<form enctype="multipart/form-data" action="index.php?ctrl=produits&task=create&page=adminSpace&pageTitle=Administration" method="post" id="newProductForm">
+    <fieldset>
+        <div id="create_product_title" class="formDiv">
+            <label for="title">Titre :</label>
+            <input type="text" name="title" class="Titre"required>
+        </div>
+
+        <div id="create_product_img">
+            <input hidden type="file" name="img" id="img" accept=".jpg,.jpeg,.png" class="Image" required>
+            <label id="add_img" for="img"><strong>Ajouter l'image en cliquant ici</strong></label>
+        </div>
+
+        <div id="create_product_content" class="formDiv">
+            <label for="content">Contenu :</label>
+            <textarea name="content" id="content" cols="30" rows="10" class="Contenu" required></textarea>
+        </div>
+
+        <div id="create_product_story" class="formDiv">
+            <label for="story">Story :</label>
+            <textarea name="story" id="story" cols="30" rows="10" class="Story" required></textarea>
+        </div>
+
+        <div id="create_product_saison" class="formDiv">
+            <label for="saison">Saison :</label>
+            <textarea name="saison" id="saison" cols="30" rows="10" class="Saison" required></textarea>
+        </div>
+
+        <div id="create_product_type">
+            <label for="fruit">Fruit</label>
+            <input type="radio" name="type" id="fruit" class="Type" value="fruit" required>
+
+            <label for="legume">Légume</label>
+            <input type="radio" name="type" id="legume" class="Type" value="legume">
+        </div>
+
+        <div id="create_product_stock">
+            <label for="stock">Stock :</label>
+            <input type="number" name="stock" id="stock" min="0" max="2000" class="Stock" required>
+        </div>
+
+        <button class="btn newProductForm">Ajouter</button>
+
+    </fieldset>
+</form>

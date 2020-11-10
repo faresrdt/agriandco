@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="library/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Agri & Co - <?= $pageTitle ?></title>
+</head>
+
+<body>
+    <header>
+        <div id="top-band">
+            <?php if (isset($_SESSION['status']) and $_SESSION['status'] === 'connected' and $_SESSION['role'] === 'user') :  ?>
+                <p><a href="index.php?ctrl=user&task=read&page=userspace&pageTitle=Mon espace&id=<?= $_SESSION['id'] ?>" title="Mon espace">Mon Espace <i class="fa fa-user-circle" aria-hidden="true"></i></a></p>
+                <p><a href="index.php?ctrl=user&task=logOut" title="Mon espace">Déconnexion <i class="fas fa-sign-out-alt"></i></i></a></p>
+
+            <?php elseif (isset($_SESSION['status']) and $_SESSION['status'] === 'connected' and $_SESSION['role'] === 'admin') :  ?>
+                <p><a href="index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration" title="Administration">Administration <i class="fa fa-user-circle" aria-hidden="true"></i> </a></p>
+                <p><a href="index.php?ctrl=user&task=logOut" title="Mon espace">Déconnexion <i class="fas fa-sign-out-alt"></i></a></p>
+
+            <?php else : ?>
+                <p><a href="index.php?ctrl=user&task=render&page=connexion&pageTitle=Connexion/Inscription" title="Connexion / Inscription">Connexion / Inscription <i class="fa fa-user-circle" aria-hidden="true"></i></a></p>
+            <?php endif; ?>
+        </div>
+        <div id="logo">
+            <a id="logo_link" class="center" href="index.php" title="Agri&Co - Accueil"><img src="library/img/header/logo/Untitled-1.png" alt="logo-agri-&-co"></a>
+        </div>
+        <nav id="navbar-top">
+            <ul>
+                <li><a href="index.php" title="Accueil">Accueil</a></li>
+                <li><a href="index.php?ctrl=produits&task=separateItem&page=produits" title="Nos produits">Nos Produits</a></li>
+                <li><a href="index.php?ctrl=articles&task=readAll&page=blog&pageTitle=Blog" title="Blog">Blog</a></li>
+                <li><a href="index.php?ctrl=user&task=render&page=contact&pageTitle=Contact" title="Contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="container">
+        <section id="principal-content">
+            <?= $pageContent ?>
+            </section>
+        <aside>
+            <h3>
+                Derniers produits ajoutés
+            </h3>
+            <ul class="aside_ul center">
+                <?php foreach (array_slice($allProducts, 0, 3) as $value) : ?>
+                    <li class="aside_li"><a href="index.php?ctrl=produits&task=read&page=produit&pageTitle=<?= $value['title'] ?>&id=<?= $value['id'] ?>"><?= $value['title'] ?> (Stock : <?= $value['stock'] ?>)</a></li>
+                <?php endforeach ?>
+
+            </ul>
+            <h3>
+                Derniers articles publiés
+            </h3>
+            <ul class="aside_ul center">
+                <?php foreach (array_slice($allArticles, 0, 3) as $value) : ?>
+                    <li class="aside_li"><a href="index.php?ctrl=articles&task=read&page=article&pageTitle=<?= $value['title'] ?>&id=<?= $value['id'] ?>"><?= $value['title'] ?></a></li>
+
+                <?php endforeach ?>
+
+            </ul>
+        </aside>
+    </div>
+
+
+    <footer>
+        <p>Mentions légale</p>
+        <p>CGU</p>
+    </footer>
+    <script src="library/js/script.js"></script>
+    <script src="library/js/meteo.js"></script>
+    <script src="library/js/formValidator.js"></script>
+
+</body>
+
+</html>

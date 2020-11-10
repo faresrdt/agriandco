@@ -1,0 +1,34 @@
+<h1>Faites vos courses !</h1>
+<p>Sur cette page vous pouvez créer votre liste de courses pour ne rien oublier lors de votre visite.</p>
+<p>Vous avez donc ci-dessous la liste de tous nos produits, fruits et légumes, vous n'avez plus qu'à cliquer sur le bouton "Ajouter" pour commencer ou completer votre liste de course.</p>
+<p>Pour créer votre liste de courses il faut d'abord vous <a href="index.php?ctrl=user&task=render&page=connexion&pageTitle=Connexion/Inscription" alt="Connexion">connecter</a> ou <a href="index.php?ctrl=user&task=render&page=connexion&pageTitle=Connexion/Inscription" alt="Inscription">créer un compte</a> pour ne jamais perdre votre liste.</p>
+
+
+
+
+<div id="products">
+    <div id="fruits">
+        <h3>Fruits :</h3>
+        <ul>
+            <?php foreach ($fruits as $value) : ?>
+
+                <li class="li_products"><a href="index.php?controller=produits&task=read&page=produit&pageTitle=<?= $value['title'] ?>&id=<?= $value['id'] ?>"><?= $value['title'] ?></a></li>
+
+
+            <?php endforeach; ?>
+        </ul>
+
+    </div>
+
+    <div id="legumes">
+        <h3>Légumes :</h3>
+
+        <?php foreach ($legumes as $value) : ?>
+            <ul>
+
+                <li class="li_products"><a href="index.php?controller=produits&task=read&page=produit&pageTitle=<?= $value['title'] ?>&id=<?= $value['id'] ?>"><?= $value['title'] ?></a></li>
+
+            </ul>
+        <?php endforeach; ?>
+    </div>
+</div>

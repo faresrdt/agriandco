@@ -1,0 +1,105 @@
+<?php if (isset($_SESSION['status']) and $_SESSION['role'] === "admin") : ?>
+    <h1 class="center">Espace de mise à jour de l'utilisateur</h1>
+
+    <?php if (isset($_SESSION['message'])) : ?>
+        <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
+            <div class="alert_error">
+                <p><?= $_SESSION['message'] ?></p>
+            </div>
+        <?php else : ?>
+            <div class="alert_success">
+                <p><?= $_SESSION['message'] ?></p>
+            </div>
+        <?php endif; ?>
+
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
+
+    <form action="index.php?ctrl=user&task=update&page=userSpace&id=<?= $item['id'] ?>" method="post" id="userspace_form">
+        <div id="update_user" class="center">
+            <fieldset>
+                <input type="hidden" name="id" id="id" value="<?= $item['id'] ?>">
+                <div id="update_user_name" class="updateDiv">
+                    <label for="name">Nom :</label>
+                    <input class="Nom" type="text" value="<?= $item['name'] ?>" name="name">
+                </div>
+
+                <div id="update_user_firstname" class="updateDiv">
+                    <label for="firstname">Prénom :</label>
+                    <input class="Prénom" type="text" value="<?= $item['firstname'] ?>" name="firstname">
+                </div>
+
+                <div id="update_user_mail" class="updateDiv">
+                    <label for="mail">E-mail :</label>
+                    <input class="E-mail" type="text" value="<?= $item['mail'] ?>" name="mail">
+                </div>
+                <button class="btn userspace_form">Mettre à jour</button>
+
+            </fieldset>
+        </div>
+    </form>
+
+
+
+<?php else : ?>
+
+    <h1>Mon Espace</h1>
+
+    <?php if (isset($_SESSION['message'])) : ?>
+        <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
+            <div class="alert_error">
+                <p><?= $_SESSION['message'] ?></p>
+            </div>
+        <?php else : ?>
+            <div class="alert_success">
+                <p><?= $_SESSION['message'] ?></p>
+            </div>
+        <?php endif; ?>
+
+        <?php unset($_SESSION['message']); ?>
+    <?php endif; ?>
+
+    <h3>Mes informations</h3>
+    <div id="user_information">
+
+        <div class="user_name">
+            <h5 class="h5_user_info">Mon nom</h5>
+            <p class="p_user_info"><?= $_SESSION['name'] ?></p>
+            <hr>
+        </div>
+
+        <div class="user_firstname">
+            <h5 class="h5_user_info">Mon prénom</h5>
+            <p class="p_user_info"><?= $_SESSION['firstname'] ?></p>
+            <hr>
+        </div>
+
+        <div class="user_mail">
+            <h5 class="h5_user_info">Mon adresse e-mail</h5>
+            <p class="p_user_info"><?= $_SESSION['mail'] ?></p>
+            <hr>
+        </div>
+
+    </div>
+
+
+    <h3>Mes favoris</h3>
+    <?php if ($favs == '' or $favs[0] == '') : ?>
+        <p>Vous n'avez pas encore ajouté de fruits ou légumes dans vos favoris.</p>
+    <?php else : ?>
+
+        <table>
+            <tbody>
+                <?php foreach ($favs as $key => $values) : ?>
+                    <tr>
+                        <td><?= $values ?></td>
+                        <td><button class="btn"><a href="index.php?ctrl=user&task=deleteFav&favName=<?= $values ?>&page=userSpace&id=<?= $item['id'] ?>" title="Supprimer">Supprimer</a></button></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    <?php endif; ?>
+
+
+<?php endif; ?>

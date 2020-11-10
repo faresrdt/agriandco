@@ -1,0 +1,24 @@
+<h1>Ajouter un nouvel article</h1>
+
+<form enctype="multipart/form-data" action="index.php?ctrl=articles&task=create&page=adminSpace" method="post" id="newArticleForm">
+    <fieldset>
+
+        <div id="create_article_title" class="formDiv">
+            <label for="title">Titre :</label>
+            <input type="text" name="title" class="Titre" required>
+        </div>
+
+        <div id="create_article_img">
+            <input hidden type="file" name="img" id="img" accept=".jpg,.jpeg,.png" required>
+            <label for="img" class=""><strong>Ajouter l'image en cliquant ici</strong></label>
+        </div>
+
+        <div id="create_article_content" class="formDiv">
+            <label for="content">Contenu :</label>
+            <textarea name="content" id="content" cols="30" rows="10" class="Contenu" required></textarea>
+        </div>
+
+        <button class="btn newArticleForm">Ajouter</button>
+
+    </fieldset>
+</form>

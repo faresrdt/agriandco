@@ -2,10 +2,10 @@
  * On instancie Utilities pour masquer la bannière lorsque l'admin est connécté et dans son espace d'administration
  */
 
-var myUtilities = new Utilities
+const myUtilities = new Utilities
 
-checkAdmin = myUtilities.isAdminCheck()
-isAdminSpace = myUtilities.isAdminSpace()
+var checkAdmin = myUtilities.isAdminCheck()
+var isAdminSpace = myUtilities.isAdminSpace()
 myUtilities.hideBanner(checkAdmin)
 
 /**
@@ -13,20 +13,21 @@ myUtilities.hideBanner(checkAdmin)
  */
 
 // On cible les boutons peu importe la page
-elements = document.getElementsByClassName('btn')
+var elements = document.getElementsByClassName('btn')
 
 //On leur ajoute un event listener
-for (var i = 0; i < elements.length; i++) {
+for (let i = 0; i < elements.length; i++) {
     elements[i].addEventListener('click', function (event) {
 
 
         myForm = new FormValidator
 
         //On stock dans des variables les informations utiles pour vérifier le contentu et afficher les erreurs
-        id = myForm.getIdForm(this)
-        formulaire = myForm.getForm(id)
-        inputs = myForm.getInputsForm(formulaire)
-        areas = myForm.getTextAreaForm(formulaire)
+        let id          = myForm.getIdForm(this)
+        let formulaire  = myForm.getForm(id)
+        let inputs      = myForm.getInputsForm(formulaire)
+        let areas       = myForm.getTextAreaForm(formulaire)
+
         inputs = Array.from(inputs)
 
 
@@ -38,18 +39,19 @@ for (var i = 0; i < elements.length; i++) {
         }
 
         //On vérifie si des champs du formulaire sont vides
-        check = myForm.checkIfEmpty(inputs)
+        let check = myForm.checkIfEmpty(inputs)
 
         //Si des champs sont vide on stop l'execution, on créer la div error, on ajouter le message d'erreurs
         if (check != null) {
             event.preventDefault()
 
-            checkIfDivErrorExist = document.getElementsByClassName('alert_error')
+            let checkIfDivErrorExist = document.getElementsByClassName('alert_error')
 
             if (checkIfDivErrorExist.length == 0) {
-                divError = document.createElement('div')
+                let divError = document.createElement('div')
                 divError.classList.add('alert_error')
-                divErrorP = document.createElement('p')
+                
+                let divErrorP = document.createElement('p')
                 divErrorP.id = "p_error"
 
                 formulaire.prepend(divError)

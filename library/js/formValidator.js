@@ -8,7 +8,7 @@ class FormValidator {
      */
     getIdForm(btn) {
 
-        var id = btn.className.replace('btn ', '')
+        let id = btn.className.replace('btn ', '')
         return id
 
     }
@@ -19,7 +19,7 @@ class FormValidator {
      */
     getInputsForm(form) {
 
-        var inputs = form.querySelectorAll('input')
+        let inputs = form.querySelectorAll('input')
 
         return inputs
 
@@ -31,7 +31,7 @@ class FormValidator {
      */
     getTextAreaForm(form) {
 
-        var textArea = form.querySelectorAll('textarea')
+        let textArea = form.querySelectorAll('textarea')
 
         return textArea
 
@@ -43,7 +43,7 @@ class FormValidator {
      */
     getForm(id) {
 
-        var form = document.getElementById(id)
+        let form = document.getElementById(id)
         return form
 
     }
@@ -54,10 +54,9 @@ class FormValidator {
      */
     checkIfEmpty(inputs) {
 
-        var empty = null
-        var fields = []
+        let fields = []
 
-        for (var i = 0; i < inputs.length; i++) {
+        for (let i = 0; i < inputs.length; i++) {
 
 
             if (inputs[i].value === '' || inputs[i].value === null) {
@@ -84,4 +83,3 @@ class FormValidator {
     }
 
 }
-

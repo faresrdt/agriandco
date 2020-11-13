@@ -4,12 +4,12 @@
 
     <form enctype="multipart/form-data" action="index.php?ctrl=produits&task=update&page=produit&id=<?= $item['id'] ?>" id="update_product_form" method="post">
         <h1>Modification du produit</h1>
-        <div id="update_product center">
+        <div id="update_product">
             <fieldset>
                 <input type="hidden" name="id" id="id" value="<?= $item['id'] ?>">
                 <div id="update_product_title">
                     <label for="title">Titre :</label>
-                    <input type="text" value="<?= $item['title'] ?>" class="Titre" name="title">
+                    <input type="text" value="<?= $item['title'] ?>" class="Titre" id="title" name="title">
                 </div>
 
                 <div id="update_product_img">

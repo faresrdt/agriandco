@@ -2,23 +2,23 @@
 <?php if (isset($_SESSION['status']) and $_SESSION['role'] === "admin") : ?>
     <form enctype="multipart/form-data" action="index.php?ctrl=articles&task=update&page=article&id=<?= $item['id'] ?>" method="post" id="update_article_form">
         <h1>Modification de l'article</h1>
-        <div id="update_article center">
+        <div id="update_article">
             <fieldset>
                 <input type="hidden" name="id" id="id" value="<?= $item['id'] ?>">
                 <div id="update_title">
                     <label for="title">Titre :</label>
-                    <input type="text" value="<?= $item['title'] ?>" name="title" class="Titre">
+                    <input type="text" value="<?= $item['title'] ?>" name="title" id="title" class="Titre">
                 </div>
 
                 <div id="update_img">
                     <label for="img">Image :</label>
                     <div><img src="library/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>"></div>
-                    <input type="file" name="img" id="input_update_img" class="Image" accept=".jpg,.jpeg,.png">
+                    <input type="file" name="img" id="img" class="Image input_update_img" accept=".jpg,.jpeg,.png">
                 </div>
 
                 <div id="update_content">
                     <label for="content">Contenu :</label>
-                    <textarea name="content" id="update_content" cols="30" rows="10"><?= $item['content'] ?></textarea>
+                    <textarea name="content" id="content" cols="30" rows="10"><?= $item['content'] ?></textarea>
                 </div>
 
                 <button class="btn update_article_form">Mettre à jour</button>

@@ -2,7 +2,6 @@
 
 namespace Controllers;
 
-use Exception;
 use Models\Admin;
 
 class User extends Controller
@@ -213,10 +212,10 @@ class User extends Controller
          * On récupère les informations du contact 
          */
         
-        $contactName        = $_POST['name'];
-        $contactFirstname   = $_POST['firstname'];
-        $contactmail        = $_POST['mail'];
-        $contactMessage     = $_POST['message'];
+        $contactName        = htmlspecialchars($_POST['name']);
+        $contactFirstname   = htmlspecialchars($_POST['firstname']);
+        $contactmail        = htmlspecialchars($_POST['mail']);
+        $contactMessage     = htmlspecialchars($_POST['message']);
 
         /**
          * On défini les variables pour l'envoi du message 
@@ -225,6 +224,7 @@ class User extends Controller
         $to         = 'fares.alib@gmail.com';
         $subject    = 'Contact';
 
+        //Message en syntaxe heredoc
         $message    = <<<HTML
             <h1>Nouvelle demande de contact</h1>
             <h2>Information du contact</h2>

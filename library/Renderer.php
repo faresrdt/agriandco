@@ -3,6 +3,11 @@
 class Renderer
 {
 
+    /**
+     * Fonction d'affichage des pages
+     * @param string $pageName
+     * @param array $variables (optionnal)
+     */
     public static function render(string $pageName, array $variables = [])
     {
 

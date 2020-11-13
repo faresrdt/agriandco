@@ -58,6 +58,7 @@ abstract class Model
         $dest = 'library/img/' . $repertoire . '/';
 
         //Formatage du nom
+        $fileName = trim(str_replace(' ', '-', $fileName));
         $finalName = $fileName . "." . $extension; //Nom final
 
         //Déplacement du fichier du répertoire temporaire vers repertoire de destination
@@ -143,13 +144,9 @@ abstract class Model
 
         //On prépare la requête et on la lance
         $sql = "UPDATE {$this->table} SET $realFields WHERE id = ?";
-        try {
-            $this->pdo->prepare($sql)->execute($values);
-        } catch (Exception $e) {
-            var_dump($sql);
-            var_dump('Contenu de values : ');
-            var_dump($values);
-        }
+
+        $this->pdo->prepare($sql)->execute($values);
+       
     }
 
     /**
@@ -172,14 +169,8 @@ abstract class Model
             $values = implode(', ', $favs);
         }
 
-        try {
             $this->pdo->prepare($sql)->execute([$values, $id]);
-        } catch (Exception $e) {
-            var_dump($sql);
-            var_dump('Contenu de favs : ');
-            var_dump($values);
-            print_r($e);
-        }
+        
     }
 
     /**
@@ -197,6 +188,7 @@ abstract class Model
         $dest = 'library/img/' . $repertoire . '/';
 
         //Formatage du nom
+        $fileName = trim(str_replace(' ', '-', $fileName));
         $finalName = $fileName . date("YmdHis") . "." . $extension; //Nom final
 
         //Déplacement du fichier du répertoire temporaire vers repertoire de destination

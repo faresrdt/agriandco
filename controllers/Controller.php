@@ -27,9 +27,9 @@ abstract class Controller
             $page = htmlspecialchars($_GET['page']);
             return $page;
         } else {
-            die("Vous devez préciser un nom de page dans l'URL !");
-            // \Http::redirect('index.php');
-        }
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Aucun nom de page passé.";
+            \Http::redirect('index.php');        }
     }
 
     /**
@@ -43,6 +43,10 @@ abstract class Controller
             return $pageTitle;
         } else {
             die('Aucun titre de page passé. [controller.php][getTitle]' . var_dump($_GET));
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Aucun titre de page passé.";
+            \Http::redirect('index.php');
+        
         }
     }
 
@@ -56,7 +60,10 @@ abstract class Controller
             $id = htmlspecialchars(intval($_GET['id']));
             return $id;
         } else {
-            die('Probleme avec l id');
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Problème avec l'id.";
+            \Http::redirect('index.php');
+        
         }
     }
 
@@ -163,8 +170,10 @@ abstract class Controller
          */
         $items = $this->model->queryAll(['table' => $this->table]);
         if (!$items) {
-            die("Les élément n'existe pas, vous ne pouvez donc pas les trouver !");
-        }
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Les éléments n'existent pas.";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
+                }
 
 
 
@@ -200,8 +209,10 @@ abstract class Controller
         }
         $item = $this->model->queryOneById($id);
         if (!$item) {
-            die("Les élément n'existe pas, vous ne pouvez donc pas les trouver !");
-        }
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "l'élément n'existe pas.";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
+                }
 
 
         /**
@@ -244,8 +255,10 @@ abstract class Controller
         if (!empty($_GET['id']) && ctype_digit($_GET['id'])) {
             $item_id = htmlspecialchars($_GET['id']);
         } else {
-            die("Vous devez préciser un paramètre `id` dans l'URL !");
-            // \Http::redirect('index.php');
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Vous devez préciser un paramètre id.";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
+        
         }
 
 
@@ -254,8 +267,10 @@ abstract class Controller
          */
         $item = $this->model->queryOneById($item_id);
         if (!$item) {
-            die("L'élément $item_id n'existe pas, vous ne pouvez donc pas le trouver !");
-        }
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "l'élément n'existe pas.";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
+                }
 
         /**
          * On affiche 
@@ -280,9 +295,12 @@ abstract class Controller
 
         // On vérifie qu'on a bien un élément dans $_POST['mail'], on le conserve dans une variable
         if (!empty($_POST['mail'])) {
-            $mail = $_POST['mail'];
+            $mail = htmlspecialchars($_POST['mail']);
         } else {
-            die("Vous devez préciser un paramètre mail !");
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Vous devez préciser un paramètre mail !";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
+        
         }
 
 
@@ -291,8 +309,10 @@ abstract class Controller
          */
         $item = $this->model->queryOneByMail($mail);
         if (!$item) {
-            die("L'élément rechercher n'existe pas, vous ne pouvez donc pas le trouver !");
-        }
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "l'élément rechercher n'existe pas.";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
+                }
 
 
         /**
@@ -320,8 +340,9 @@ abstract class Controller
         if (!empty($_POST['id']) && ctype_digit($_POST['id'])) {
             $item_id = htmlspecialchars($_POST['id']);
         } else {
-            die('Vous devez préciser un paramètre `id` dans $_POST !');
-            // \Http::redirect('index.php');
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Vous devez préciser un paramètre `id` dans $_POST !";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
         }
 
         /**
@@ -329,7 +350,10 @@ abstract class Controller
          */
         $item = $this->model->queryOneById($item_id);
         if (!$item) {
-            die("L'élément $item_id n'existe pas, vous ne pouvez donc pas le supprimer !");
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "L'élément $item_id n'existe pas, vous ne pouvez donc pas le supprimer !";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
+        
         }
 
         /**
@@ -384,7 +408,9 @@ abstract class Controller
          * Récupération du param "id" et vérification de celui-ci
          */
         if (empty($_GET['id']) || !ctype_digit($_GET['id'])) {
-            die("Precisez un id dans l'URL");
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Aucun id n'est précisé.";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
         }
 
         $item_id = htmlspecialchars($_GET['id']);
@@ -394,7 +420,11 @@ abstract class Controller
          */
         $item = $this->model->queryOneById($item_id);
         if (!$item) {
-            die("L'élément $item_id n'existe pas, vous ne pouvez donc pas le supprimer !");
+
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "L'élément $item_id n'existe pas, vous ne pouvez donc pas le supprimer !";
+            \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
+
         }
 
         /**

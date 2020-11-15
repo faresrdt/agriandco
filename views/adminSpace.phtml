@@ -5,8 +5,6 @@
     </p>
 </div>
 
-<?php var_dump($_SESSION); ?>
-
 <?php if (isset($_SESSION['message'])) : ?>
     <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
         <div class="alert_error">

@@ -472,7 +472,9 @@ abstract class Controller
         if (self::isAdmin()) {
             $this->model->delete($item_id);
         } else {
-            die('Pas connecter en tant que admin');
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Vous n'êtes pas admin !";
+            \Http::redirect('index.php');
         }
 
 

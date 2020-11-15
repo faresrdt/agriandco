@@ -47,7 +47,7 @@
             </h3>
             <ul class="aside_ul center">
                 <?php foreach (array_slice($allProducts, 0, 3) as $value) : ?>
-                    <li class="aside_li"><a href="index.php?ctrl=produits&task=read&page=produit&pageTitle=<?= $value['title'] ?>&id=<?= $value['id'] ?>"><?= $value['title'] ?> (Stock : <?= $value['stock'] ?>)</a></li>
+                    <li class="aside_li"><a href="index.php?ctrl=produits&task=read&page=produit&id=<?= $value['id'] ?>"><?= $value['title'] ?> (Stock : <?= $value['stock'] ?>)</a></li>
                 <?php endforeach ?>
 
             </ul>
@@ -56,7 +56,7 @@
             </h3>
             <ul class="aside_ul center">
                 <?php foreach (array_slice($allArticles, 0, 3) as $value) : ?>
-                    <li class="aside_li"><a href="index.php?ctrl=articles&task=read&page=article&pageTitle=<?= $value['title'] ?>&id=<?= $value['id'] ?>"><?= $value['title'] ?></a></li>
+                    <li class="aside_li"><a href="index.php?ctrl=articles&task=read&page=article&id=<?= $value['id'] ?>"><?= $value['title'] ?></a></li>
 
                 <?php endforeach ?>
 

@@ -58,7 +58,6 @@ abstract class Model
         $dest = 'library/img/' . $repertoire . '/';
 
         //Formatage du nom
-        $fileName = trim(str_replace(' ', '-', $fileName));
         $finalName = $fileName . "." . $extension; //Nom final
 
         //Déplacement du fichier du répertoire temporaire vers repertoire de destination
@@ -188,7 +187,6 @@ abstract class Model
         $dest = 'library/img/' . $repertoire . '/';
 
         //Formatage du nom
-        $fileName = trim(str_replace(' ', '-', $fileName));
         $finalName = $fileName . date("YmdHis") . "." . $extension; //Nom final
 
         //Déplacement du fichier du répertoire temporaire vers repertoire de destination

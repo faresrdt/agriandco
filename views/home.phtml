@@ -1,3 +1,18 @@
+<?php if (isset($_SESSION['message'])) : ?>
+    <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
+        <div class="alert_error">
+            <p><?= $_SESSION['message'] ?></p>
+        </div>
+    <?php else : ?>
+        <div class="alert_success">
+            <p><?= $_SESSION['message'] ?></p>
+        </div>
+    <?php endif; ?>
+
+    <?php unset($_SESSION['messageType']);
+    unset($_SESSION['message']); ?>
+<?php endif; ?>
+
 <article id="agri_story">
     <h2>Une brève histoire de l'agriculture biologique</h2>
     <p>

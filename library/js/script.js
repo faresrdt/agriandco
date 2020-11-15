@@ -48,10 +48,10 @@ for (let i = 0; i < elements.length; i++) {
             let checkIfDivErrorExist = document.getElementsByClassName('alert_error')
 
             if (checkIfDivErrorExist.length == 0) {
-                let divError = document.createElement('div')
+                var divError = document.createElement('div')
                 divError.classList.add('alert_error')
                 
-                let divErrorP = document.createElement('p')
+                var divErrorP = document.createElement('p')
                 divErrorP.id = "p_error"
 
                 formulaire.prepend(divError)

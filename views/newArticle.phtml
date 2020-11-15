@@ -1,6 +1,6 @@
 <h1>Ajouter un nouvel article</h1>
 
-<form enctype="multipart/form-data" action="index.php?ctrl=articles&task=create&page=adminSpace" method="post" id="newArticleForm">
+<form enctype="multipart/form-data" action="index.php?ctrl=articles&task=create&page=adminSpace&pageTitle=Administration" method="post" id="newArticleForm">
     <fieldset>
 
         <div id="create_article_title" class="formDiv">
@@ -10,7 +10,7 @@
 
         <div id="create_article_img">
             <input hidden type="file" name="img" id="img" accept=".jpg,.jpeg,.png" required>
-            <label for="img" class=""><strong>Ajouter l'image en cliquant ici</strong></label>
+            <label for="img" class="Image"><strong>Ajouter l'image en cliquant ici</strong></label>
         </div>
 
         <div id="create_article_content" class="formDiv">

@@ -24,7 +24,9 @@ class User extends Controller
         $user = $this->model->queryOneByMail($mail);
 
         if (!$user) {
-            die("Il n'y a pas d'utilisateur avec cette adresse e-mail");
+            $_SESSION['messageType'] = 'error';
+            $_SESSION['message']     = "Adresse e-mail inexistante";
+            \Http::redirect('index.php?ctrl=user&task=render&page=connexion&pageTitle=Connexion/Inscription');
         } else {
             $pass = password_verify($password, $user['password']);
 
@@ -56,7 +58,11 @@ class User extends Controller
                     \Http::redirect("index.php?ctrl=user&task=read&page=userSpace&pageTitle=Mon Espace&id=$id");
                 }
             } else {
-                die("Le mot de passe n'est pas bon");
+                $_SESSION['messageType'] = 'error';
+                $_SESSION['message']     = "Erreur dans la saisie du mot de passe.";
+
+                var_dump($_SESSION);
+                \Http::redirect('index.php?ctrl=user&task=render&page=connexion&pageTitle=Connexion/Inscription');
             }
         }
     }

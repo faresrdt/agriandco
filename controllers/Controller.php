@@ -29,7 +29,8 @@ abstract class Controller
         } else {
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "Aucun nom de page passé.";
-            \Http::redirect('index.php');        }
+            \Http::redirect('index.php');
+        }
     }
 
     /**
@@ -46,7 +47,6 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "Aucun titre de page passé.";
             \Http::redirect('index.php');
-        
         }
     }
 
@@ -63,8 +63,25 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "Problème avec l'id.";
             \Http::redirect('index.php');
-        
         }
+    }
+
+    /**
+     * Fonction pour formater les noms pour pouvoir les rentrer dans la BDD sans espace
+     * @param string $name 
+     */
+    public static function formatName($name)
+    {
+
+        //On enlève d'abord les espaces
+        $name = trim(str_replace(' ', '-', $name));
+
+        //Ensuite les accents
+        $accents        = ["à", "é", "è", "À", "É", "È"];
+        $rplcAccent     = ["A", "E", "E", "A", "E", "E"];
+        $name = str_replace($accents, $rplcAccent, $name);
+
+        return $name;
     }
 
     /**
@@ -99,9 +116,19 @@ abstract class Controller
     public function render(?array $variables = [])
     {
         $pageName   = self::getPage();
-        $pageTitle  = self::getTitle();
 
+        if ($pageName === "newProduit") {
 
+            $pageTitle = "Nouveau produit";
+        } elseif ($pageName === "newArticle") {
+
+            $pageTitle = "Nouvel Article";
+        } elseif ($pageName === "newUser") {
+
+            $pageTitle = "Nouvel Utilisateur";
+        } else {
+            $pageTitle  = self::getTitle();
+        }
 
         \Renderer::render($pageName, compact('pageTitle', 'variables'));
     }
@@ -121,6 +148,11 @@ abstract class Controller
             $_POST['password'] = $this->model->hashPassword($_POST['password']);
         }
 
+        //On formate le titre pour pouvoir l'utiliser dans l'URL ensuite
+        if ($_POST['title']) {
+            $_POST['title_href'] = self::formatName($_POST['title']);
+        }
+
         foreach ($_POST as $key => $value) {
             array_push($fields, $key);
             array_push($values, $value);
@@ -134,7 +166,7 @@ abstract class Controller
 
             $file       = $_FILES['img']['tmp_name'];
             $fileInfo   = pathinfo($_FILES['img']['name']);
-            $fileName   = $fileInfo['filename'];
+            $fileName   = self::formatName($fileInfo['filename']);
             $extension  = $fileInfo['extension'];
             $repertoire = $this->repertoire;
 
@@ -173,7 +205,7 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "Les éléments n'existent pas.";
             \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
-                }
+        }
 
 
 
@@ -212,13 +244,19 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "l'élément n'existe pas.";
             \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
-                }
+        }
 
 
         /**
          * On affiche 
          */
-        $pageTitle = self::getTitle();
+        if (isset($item['title'])) {
+            $pageTitle = $item['title'];
+        } elseif (isset($item['name'])) {
+            $pageTitle = $item['name'];
+        }else {
+            $pageTitle = self::getTitle();
+        }
         $pageName = self::getPage();
 
         //Formatage de la date si c'est un article
@@ -258,7 +296,6 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "Vous devez préciser un paramètre id.";
             \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
-        
         }
 
 
@@ -270,7 +307,7 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "l'élément n'existe pas.";
             \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
-                }
+        }
 
         /**
          * On affiche 
@@ -300,7 +337,6 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "Vous devez préciser un paramètre mail !";
             \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
-        
         }
 
 
@@ -312,7 +348,7 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "l'élément rechercher n'existe pas.";
             \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
-                }
+        }
 
 
         /**
@@ -353,7 +389,6 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "L'élément $item_id n'existe pas, vous ne pouvez donc pas le supprimer !";
             \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
-        
         }
 
         /**
@@ -361,6 +396,10 @@ abstract class Controller
          */
         $fields = []; //Champs
         $values = []; //Valeurs
+
+        if ($_POST['title']) {
+            $_POST['title_href'] = self::formatName($_POST['title']);
+        }
 
         foreach ($_POST as $key => $value) {
             array_push($fields, $key);
@@ -372,10 +411,10 @@ abstract class Controller
          * Si une image est transmise, la mettre à jour
          */
         if (isset($_FILES['img']) and !empty($_FILES['img']['name'])) {
-            var_dump($_FILES);
+
             $file       = $_FILES['img']['tmp_name'];
             $fileInfo   = pathinfo($_FILES['img']['name']);
-            $fileName   = $fileInfo['filename'];
+            $fileName   = self::formatName($fileInfo['filename']);
             $extension  = $fileInfo['extension'];
             $repertoire = $this->repertoire;
 
@@ -424,7 +463,6 @@ abstract class Controller
             $_SESSION['messageType'] = 'error';
             $_SESSION['message']     = "L'élément $item_id n'existe pas, vous ne pouvez donc pas le supprimer !";
             \Http::redirect('index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration');
-
         }
 
         /**

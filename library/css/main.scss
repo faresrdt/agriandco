@@ -166,6 +166,8 @@ table {
 .btn>a {
     display: inline-block;
     width: 100%;
+
+    
 }
 
 .formDiv {
@@ -359,14 +361,26 @@ fieldset>div:nth-child(4) {
 
 .adm_btn {
     width: 100%;
-
 }
+
+.add_buttons{
+    @media screen and (min-width : 700px) {
+        display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+}
+
 
 .adm_li {
     @media screen and (min-width : 700px) {
         width: 50%;
         margin: 0.5em auto;
     }
+}
+
+td:nth-child(1){
+    text-align: left;
 }
 
 /**************************** CSS PAGE ARTICLE ****************************/

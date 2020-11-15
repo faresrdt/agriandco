@@ -1,30 +1,32 @@
 <h1>ADMINISTRATION</h1>
-<div class="alert_danger">
+<div class="alert_error">
     <p>ATTENTION ! N'oubliez pas de cliquer sur déconnexion en haut à droite pour vous déconnecter de l'espace administration
         ou cliquez <a href="index.php?ctrl=user&task=logOut" title="Déconnexion">ICI</a>.
     </p>
-
-
 </div>
-<?php if (isset($_SESSION['message'])) : ?>
-        <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
-            <div class="alert_error">
-                <p><?= $_SESSION['message'] ?></p>
-            </div>
-        <?php else : ?>
-            <div class="alert_success">
-                <p><?= $_SESSION['message'] ?></p>
-            </div>
-        <?php endif; ?>
 
-        <?php unset($_SESSION['message']); ?>
+<?php var_dump($_SESSION); ?>
+
+<?php if (isset($_SESSION['message'])) : ?>
+    <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
+        <div class="alert_error">
+            <p><?= $_SESSION['message'] ?></p>
+        </div>
+    <?php else : ?>
+        <div class="alert_success">
+            <p><?= $_SESSION['message'] ?></p>
+        </div>
     <?php endif; ?>
 
+    <?php unset($_SESSION['messageType']);
+    unset($_SESSION['message']); ?>
+<?php endif; ?>
 
-<ul>
-    <li class="adm_li"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newProduit&pageTitle=Nouveau_produit" title="Ajouter un produit">Ajouter un produit</a></button></li>
-    <li class="adm_li"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newArticle&pageTitle=Nouvel_article" title="Ajouter un article">Ajouter un article</a></button></li>
-    <li class="adm_li"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newUser&pageTitle=Nouvel_utilisateur" title="Ajouter un utilisateur">Ajouter un utilisateur</a></button></li>
+
+<ul class="add_buttons">
+    <li class="adm_li add_button"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newProduit" title="Ajouter un produit">Ajouter un produit</a></button></li>
+    <li class="adm_li add_button"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newArticle" title="Ajouter un article">Ajouter un article</a></button></li>
+    <li class="adm_li add_button"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newUser" title="Ajouter un utilisateur">Ajouter un utilisateur</a></button></li>
 </ul>
 
 <h2>Tous les articles :</h2>
@@ -42,7 +44,7 @@
         <?php foreach ($allArticles as $article) : ?>
             <tr>
                 <td><?= $article['title'] ?></td>
-                <td><button class="btn"><a href="index.php?ctrl=articles&task=read&page=article&pageTitle=<?= $article['title'] ?>&id=<?= $article['id'] ?>" title=" Modifier">Modifier</a></button></td>
+                <td><button class="btn"><a href="index.php?ctrl=articles&task=read&page=article&id=<?= $article['id'] ?>" title=" Modifier">Modifier</a></button></td>
                 <td><button class="btn"><a href="index.php?ctrl=articles&task=delete&page=adminSpace&id=<?= $article['id'] ?>" title="Supprimer">Supprimer</a></button></td>
             </tr>
         <?php endforeach; ?>
@@ -77,7 +79,7 @@
                 <td><?= $produit['title'] ?></td>
                 <td><?= $produit['type'] ?></td>
                 <td><?= $produit['stock'] ?></td>
-                <td><button class="btn"><a href="index.php?ctrl=produits&task=read&page=produit&pageTitle=<?= $produit['title'] ?>&id=<?= $produit['id'] ?>" title="Modifier">Modifier</a></button></td>
+                <td><button class="btn"><a href="index.php?ctrl=produits&task=read&page=produit&id=<?= $produit['id'] ?>" title="Modifier">Modifier</a></button></td>
                 <td><button class="btn"><a href="index.php?ctrl=produits&task=delete&page=adminSpace&id=<?= $produit['id'] ?>" title="Supprimer">Supprimer</a></button></td>
             </tr>
         <?php endforeach; ?>
@@ -106,7 +108,7 @@
             <tr>
                 <td><?= $user['name'] ?></td>
                 <td><?= $user['firstname'] ?></td>
-                <td><button class="btn"><a href="index.php?ctrl=user&task=read&page=userSpace&pageTitle=<?= $user['name'] ?>&id=<?= $user['id'] ?>" title="Modifier">Modifier</a></button></td>
+                <td><button class="btn"><a href="index.php?ctrl=user&task=read&page=userSpace&id=<?= $user['id'] ?>" title="Modifier">Modifier</a></button></td>
                 <td><button class="btn"><a href="index.php?ctrl=user&task=delete&page=adminSpace&id=<?= $user['id'] ?>" title="Supprimer">Supprimer</a></button></td>
             </tr>
         <?php endforeach; ?>

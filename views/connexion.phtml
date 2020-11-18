@@ -19,12 +19,12 @@
     <fieldset>
         <legend>Connectez-vous</legend>
         <div id="login_mail_div" class="contact_form_div">
-            <label for="mail">E-mail</label>
+            <label for="login_mail">E-mail</label>
             <input type="text" name="mail" id="login_mail" class="E-mail" placeholder="andre.dupont@gmail.com" required>
         </div>
 
-        <div id="password_div_login class="contact_form_div">
-            <label for="password">Mot de passe</label>
+        <div id="password_div_login" class="contact_form_div">
+            <label for="login_password">Mot de passe</label>
             <input type="password" name="password" id="login_password" class="Mot de passe" placeholder="Mot de passe" pattern="[A-Za-z0-9]+" required>
         </div>
 
@@ -66,23 +66,23 @@
     <fieldset>
         <legend>Inscrivez-vous</legend>
         <div id="name_div" class="contact_form_div">
-            <label for="name">Nom</label>
+            <label for="signin_name">Nom</label>
             <input type="text" name="name" id="signin_name" class="Nom" placeholder="Dupont" <?php if (isset($_POST['nom'])) : ?> value="<?= $_POST['nom'] ?>" <?php endif; ?> pattern="[A-Za-z0-9]+" required>
         </div>
 
         <div id="firstname_div" class="contact_form_div">
-            <label for="firstname">Prénom</label>
+            <label for="signin_firstname">Prénom</label>
             <input type="text" name="firstname" id="signin_firstname" class="Prénom" placeholder="André" <?php if (isset($_POST['prenom'])) : ?> value="<?= $_POST['prenom'] ?>" <?php endif; ?> pattern="[A-Za-z0-9]+" required>
         </div>
 
         <div id="signin_mail_div" class="contact_form_div">
-            <label for="mail">E-mail</label>
+            <label for="signin_mail">E-mail</label>
             <input type="email" name="mail" id="signin_mail" class="E-mail" placeholder="andre.dupont@gmail.com" <?php if (isset($_POST['mail'])) : ?> value="<?= $_POST['mail'] ?>" <?php endif; ?> required>
         </div>
 
 
         <div id="password_div_signin" class="contact_form_div">
-            <label for="password">Mot de passe</label>
+            <label for="signin_password">Mot de passe</label>
             <input type="password" name="password" id="signin_password" class="Mot de passe" placeholder="8 caractères minimum" minlength="8" maxlength="20" pattern="[A-Za-z0-9]+" required>
         </div>
 

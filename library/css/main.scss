@@ -373,12 +373,19 @@ fieldset>div:nth-child(4) {
 
 
 .adm_li {
+
+    margin: 2em auto;
+    width: 50%;
+    font-size: small;
     @media screen and (min-width : 700px) {
-        width: 50%;
         margin: 0.5em auto;
+        width: 55%;
     }
 }
 
+.table_line{
+    line-height: 3em;
+}
 td:nth-child(1){
     text-align: left;
 }

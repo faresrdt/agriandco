@@ -1,4 +1,4 @@
-<!--- PARTIE ADMIN --->
+<!-- PARTIE ADMIN -->
 
 <?php if (isset($_SESSION['status']) and $_SESSION['role'] === "admin") : ?>
 
@@ -63,7 +63,7 @@
 
 <?php else : ?>
 
-    <!--- PARTIE USER --->
+    <!-- PARTIE USER -->
 
     <?php if (isset($_SESSION['message'])) : ?>
         <?php if (isset($_SESSION['messageType']) and $_SESSION['messageType'] === 'error') : ?>
@@ -94,10 +94,10 @@
     <h3>Le stock</h3>
     <p><?= $item['stock'] ?> kg encore disponible.</p>
 
-    <!--- CONDITION POUR AFFICHER LE BOUTON, IL FAUT ÊTRE CONNECTER POUR AJOUTER A UNE LISTE --->
+    <!-- CONDITION POUR AFFICHER LE BOUTON, IL FAUT ÊTRE CONNECTER POUR AJOUTER A UNE LISTE -->
     <?php if (isset($_SESSION['status']) and $_SESSION['status'] === "connected") : ?>
         <div class="forBtn center">
-            <button class="btn"><a href="index.php?ctrl=user&task=addFav&favName=<?= $item['title'] ?>&page=userSpace&pageTitle=<?= $item['title'] ?>&id=<?= $item['id'] ?>" title="Ajouter aux favoris">Ajouter à ma favoris</a></button>
+            <a href="index.php?ctrl=user&task=addFav&favName=<?= $item['title'] ?>&page=userSpace&pageTitle=<?= $item['title'] ?>&id=<?= $item['id'] ?>" class="btn" title="Ajouter aux favoris">Ajouter à ma favoris</a>
         </div>
     <?php endif; ?>
 

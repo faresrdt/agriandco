@@ -1,8 +1,6 @@
 <h3>Consultez tous nos articles concernant l'agriculture.</h3>
 
 <ul id="articles_blog">
-    <!--- BOUCLE FOREACH POUR AFFICHER TOUS LES ARTICLES --->
-    <!--- @items -> les articles --->
 
     <?php foreach ($items as $value) : ?>
         <li class="blog_li">
@@ -10,7 +8,7 @@
                 <img src="library/img/articles/<?= $value['img'] ?>" alt="<?= $value['img'] ?>">
             </div>
             <div class="article_pres">
-                <h4 class="h4_blog_title center"><a href="index.php?ctrl=articles&task=read&page=article&pageTitle=<?= $value['title'] ?>&id=<?= $value['id'] ?>"><?= $value['title'] ?></a></h4>
+                <h4 class="h4_blog_title center"><a href="index.php?ctrl=articles&task=read&page=article&id=<?= $value['id'] ?>"><?= $value['title'] ?></a></h4>
                 <small>Écrit le : <?= $value['created_at'] ?> </small>
 
             </div>

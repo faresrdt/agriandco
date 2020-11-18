@@ -93,7 +93,7 @@
                 <?php foreach ($favs as $key => $values) : ?>
                     <tr>
                         <td><?= $values ?></td>
-                        <td><button class="btn"><a href="index.php?ctrl=user&task=deleteFav&favName=<?= $values ?>&page=userSpace&id=<?= $item['id'] ?>" title="Supprimer">Supprimer</a></button></td>
+                        <td><a href="index.php?ctrl=user&task=deleteFav&favName=<?= $values ?>&page=userSpace&id=<?= $item['id'] ?>" class="btn" title="Supprimer">Supprimer</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

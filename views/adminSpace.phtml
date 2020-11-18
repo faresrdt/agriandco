@@ -22,9 +22,9 @@
 
 
 <ul class="add_buttons">
-    <li class="adm_li add_button"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newProduit" title="Ajouter un produit">Ajouter un produit</a></button></li>
-    <li class="adm_li add_button"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newArticle" title="Ajouter un article">Ajouter un article</a></button></li>
-    <li class="adm_li add_button"><button class="btn adm_btn"><a href="index.php?ctrl=user&task=render&page=newUser" title="Ajouter un utilisateur">Ajouter un utilisateur</a></button></li>
+    <li class="adm_li add_button"><a href="index.php?ctrl=user&task=render&page=newProduit" class="btn adm_btn" title="Ajouter un produit">Ajouter un produit</a></li>
+    <li class="adm_li add_button"><a href="index.php?ctrl=user&task=render&page=newArticle" class="btn adm_btn" title="Ajouter un article">Ajouter un article</a></li>
+    <li class="adm_li add_button"><a href="index.php?ctrl=user&task=render&page=newUser" class="btn adm_btn" title="Ajouter un utilisateur">Ajouter un utilisateur</a></li>
 </ul>
 
 <h2>Tous les articles :</h2>
@@ -40,10 +40,10 @@
 
     <tbody>
         <?php foreach ($allArticles as $article) : ?>
-            <tr>
+            <tr class="table_line">
                 <td><?= $article['title'] ?></td>
-                <td><button class="btn"><a href="index.php?ctrl=articles&task=read&page=article&id=<?= $article['id'] ?>" title=" Modifier">Modifier</a></button></td>
-                <td><button class="btn"><a href="index.php?ctrl=articles&task=delete&page=adminSpace&id=<?= $article['id'] ?>" title="Supprimer">Supprimer</a></button></td>
+                <td><a href="index.php?ctrl=articles&task=read&page=article&id=<?= $article['id'] ?>" class="btn btn_upd_del" title=" Modifier">Modifier</a></td>
+                <td><a href="index.php?ctrl=articles&task=delete&page=adminSpace&id=<?= $article['id'] ?>" class="btn btn_upd_del" title="Supprimer">Supprimer</a></td>
             </tr>
         <?php endforeach; ?>
 
@@ -72,13 +72,13 @@
 
     <tbody>
         <?php foreach ($allProducts as $produit) : ?>
-            <tr>
+            <tr class="table_line">
 
                 <td><?= $produit['title'] ?></td>
                 <td><?= $produit['type'] ?></td>
                 <td><?= $produit['stock'] ?></td>
-                <td><button class="btn"><a href="index.php?ctrl=produits&task=read&page=produit&id=<?= $produit['id'] ?>" title="Modifier">Modifier</a></button></td>
-                <td><button class="btn"><a href="index.php?ctrl=produits&task=delete&page=adminSpace&id=<?= $produit['id'] ?>" title="Supprimer">Supprimer</a></button></td>
+                <td><a href="index.php?ctrl=produits&task=read&page=produit&id=<?= $produit['id'] ?>" class="btn btn_upd_del" title="Modifier">Modifier</a></td>
+                <td><a href="index.php?ctrl=produits&task=delete&page=adminSpace&id=<?= $produit['id'] ?>" class="btn btn_upd_del" title="Supprimer">Supprimer</a></td>
             </tr>
         <?php endforeach; ?>
 
@@ -103,11 +103,11 @@
 
     <tbody>
         <?php foreach ($allUsers as $user) : ?>
-            <tr>
+            <tr class="table_line">
                 <td><?= $user['name'] ?></td>
                 <td><?= $user['firstname'] ?></td>
-                <td><button class="btn"><a href="index.php?ctrl=user&task=read&page=userSpace&id=<?= $user['id'] ?>" title="Modifier">Modifier</a></button></td>
-                <td><button class="btn"><a href="index.php?ctrl=user&task=delete&page=adminSpace&id=<?= $user['id'] ?>" title="Supprimer">Supprimer</a></button></td>
+                <td><a href="index.php?ctrl=user&task=read&page=userSpace&id=<?= $user['id'] ?>" class="btn btn_upd_del" title="Modifier">Modifier</a></td>
+                <td><a href="index.php?ctrl=user&task=delete&page=adminSpace&id=<?= $user['id'] ?>" class="btn btn_upd_del" title="Supprimer">Supprimer</a></td>
             </tr>
         <?php endforeach; ?>
 

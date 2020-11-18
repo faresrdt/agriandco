@@ -13,8 +13,8 @@
     <header>
         <div id="top-band">
             <?php if (isset($_SESSION['status']) and $_SESSION['status'] === 'connected' and $_SESSION['role'] === 'user') :  ?>
-                <p><a href="index.php?ctrl=user&task=read&page=userspace&pageTitle=Mon espace&id=<?= $_SESSION['id'] ?>" title="Mon espace">Mon Espace <i class="fa fa-user-circle" aria-hidden="true"></i></a></p>
-                <p><a href="index.php?ctrl=user&task=logOut" title="Mon espace">Déconnexion <i class="fas fa-sign-out-alt"></i></i></a></p>
+                <p><a href="index.php?ctrl=user&task=read&page=userspace&id=<?= $_SESSION['id'] ?>" title="Mon espace">Mon Espace <i class="fa fa-user-circle" aria-hidden="true"></i></a></p>
+                <p><a href="index.php?ctrl=user&task=logOut" title="Mon espace">Déconnexion <i class="fas fa-sign-out-alt"></i></a></p>
 
             <?php elseif (isset($_SESSION['status']) and $_SESSION['status'] === 'connected' and $_SESSION['role'] === 'admin') :  ?>
                 <p><a href="index.php?ctrl=user&task=render&page=adminSpace&pageTitle=Administration" title="Administration">Administration <i class="fa fa-user-circle" aria-hidden="true"></i> </a></p>

@@ -1,4 +1,4 @@
-<!--- PARTIE ADMIN --->
+<!-- PARTIE ADMIN -->
 <?php if (isset($_SESSION['status']) and $_SESSION['role'] === "admin") : ?>
     <form enctype="multipart/form-data" action="index.php?ctrl=articles&task=update&page=article&id=<?= $item['id'] ?>" method="post" id="update_article_form">
         <h1>Modification de l'article</h1>
@@ -26,7 +26,7 @@
         </div>
     </form>
 <?php else : ?>
-    <!--- PARTIE USER --->
+    <!-- PARTIE USER -->
         <h1 id="article_title" class="center"><?= $item['title'] ?></h1>
         <small>Date de publication : <?= $item['created_at'] ?></small>
         <div id="article_img"><img src="library/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>"></div>

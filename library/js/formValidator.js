@@ -8,7 +8,8 @@ class FormValidator {
      */
     getIdForm(btn) {
 
-        let id = btn.className.replace('btn ', '')
+        let id = btn.className.replace('btn btn_form ', '')
+
         return id
 
     }
@@ -79,6 +80,20 @@ class FormValidator {
         } else {
             return null
         }
+
+    }
+
+    /**
+     * Fonction pour créer un élément avec une class définie
+     * @param string element 
+     * @param string classToAdd 
+     */
+    newElement(element, classToAdd) {
+
+        let newElement = document.createElement(element)
+        newElement.classList.add(classToAdd)
+
+        return newElement
 
     }
 

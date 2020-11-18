@@ -12,7 +12,7 @@ myUtilities.hideBanner(checkAdmin)
  * On utilise l'objet formValidator pour faire vérifier nos formulaire et afficher un message correspondant à l'erreur rencontrée si il y en a une
  */
 
-// On cible les boutons peu importe la page
+// On cible les boutons avec la classe "btn_form" peu importe la page
 var elements = document.getElementsByClassName('btn')
 
 //On leur ajoute un event listener
@@ -23,10 +23,10 @@ for (let i = 0; i < elements.length; i++) {
         myForm = new FormValidator
 
         //On stock dans des variables les informations utiles pour vérifier le contentu et afficher les erreurs
-        let id          = myForm.getIdForm(this)
-        let formulaire  = myForm.getForm(id)
-        let inputs      = myForm.getInputsForm(formulaire)
-        let areas       = myForm.getTextAreaForm(formulaire)
+        var id = myForm.getIdForm(this)
+        var formulaire = myForm.getForm(id)
+        var inputs = myForm.getInputsForm(formulaire)
+        var areas = myForm.getTextAreaForm(formulaire)
 
         inputs = Array.from(inputs)
 
@@ -47,11 +47,17 @@ for (let i = 0; i < elements.length; i++) {
 
             let checkIfDivErrorExist = document.getElementsByClassName('alert_error')
 
+
+
+
             if (checkIfDivErrorExist.length == 0) {
-                var divError = document.createElement('div')
-                divError.classList.add('alert_error')
-                
-                var divErrorP = document.createElement('p')
+
+
+                var divError = myForm.newElement("div", "alert_error")
+                divError.classList.add(id)
+                divError.id = divError.classList
+
+                var divErrorP = myForm.newElement("p", "alert_error_p")
                 divErrorP.id = "p_error"
 
                 formulaire.prepend(divError)
@@ -59,7 +65,19 @@ for (let i = 0; i < elements.length; i++) {
                 divError.append(divErrorP)
                 divErrorP.append(check)
             } else {
+
+                divZebi = document.getElementsByClassName('alert_error')
+                console.log(divZebi)
+                document.removeChild(divZebi)
+
+                // divError = document.getElementById(document.getElementsByClassName('alert_error').classList.replace(' ', ''))
+                // console.log(divError)
+                // console.log(checkIfDivErrorExist.parentNode)
+                // formulaire.removeChild(checkIfDivErrorExist)
+
+
                 //Si la div alert error existe déjà alors on la vide et on insère le nouveau message d'erreur
+                divErrorP = document.getElementById('p_error')
                 divErrorP.innerHTML = ""
                 divErrorP.append(check)
             }

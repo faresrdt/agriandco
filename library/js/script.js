@@ -1,5 +1,5 @@
 /**
- * On instancie Utilities pour masquer la bannière lorsque l'admin est connécté et dans son espace d'administration
+ * On instancie Utilities pour masquer la bannière lorsque l'admin est connecté et dans son espace d'administration
  */
 
 const myUtilities = new Utilities
@@ -13,7 +13,7 @@ myUtilities.hideBanner(checkAdmin)
  */
 
 // On cible les boutons avec la classe "btn_form" peu importe la page
-var elements = document.getElementsByClassName('btn')
+var elements = document.getElementsByClassName('btn_form')
 
 //On leur ajoute un event listener
 for (let i = 0; i < elements.length; i++) {
@@ -23,10 +23,11 @@ for (let i = 0; i < elements.length; i++) {
         myForm = new FormValidator
 
         //On stock dans des variables les informations utiles pour vérifier le contentu et afficher les erreurs
-        var id = myForm.getIdForm(this)
-        var formulaire = myForm.getForm(id)
-        var inputs = myForm.getInputsForm(formulaire)
-        var areas = myForm.getTextAreaForm(formulaire)
+        var id          = myForm.getIdForm(this)
+        var formulaire  = myForm.getForm(id)
+        console.log(formulaire)
+        var inputs      = myForm.getInputsForm(formulaire)
+        var areas       = myForm.getTextAreaForm(formulaire)
 
         inputs = Array.from(inputs)
 
@@ -45,40 +46,40 @@ for (let i = 0; i < elements.length; i++) {
         if (check != null) {
             event.preventDefault()
 
+            //On recherche sur la page si la div d'erreur existe et on stock l'information dans une variable let
             let checkIfDivErrorExist = document.getElementsByClassName('alert_error')
 
+            //Création de la div englobant le message d'erreur
+            var divError = myForm.newElement("div", "alert_error")
+            divError.classList.add(id)
+            divError.id = divError.classList
 
+            //Création de la div du message
+            var divErrorP = myForm.newElement("p", "alert_error_p")
+            divErrorP.id = "p_error"
 
-
+            //On regarde si la variable est remplie ou non avec une condition
             if (checkIfDivErrorExist.length == 0) {
 
-
-                var divError = myForm.newElement("div", "alert_error")
-                divError.classList.add(id)
-                divError.id = divError.classList
-
-                var divErrorP = myForm.newElement("p", "alert_error_p")
-                divErrorP.id = "p_error"
-
+                //Si la div error n'existe pas, on l'insère avant le formulaire où il y a l'erreur
                 formulaire.prepend(divError)
 
+                //On insère dans la div d'erreur la div pour le message
                 divError.append(divErrorP)
+
+                //On insère le message dans sa div
                 divErrorP.append(check)
+
             } else {
 
-                divZebi = document.getElementsByClassName('alert_error')
-                console.log(divZebi)
-                document.removeChild(divZebi)
-
-                // divError = document.getElementById(document.getElementsByClassName('alert_error').classList.replace(' ', ''))
-                // console.log(divError)
-                // console.log(checkIfDivErrorExist.parentNode)
-                // formulaire.removeChild(checkIfDivErrorExist)
-
-
-                //Si la div alert error existe déjà alors on la vide et on insère le nouveau message d'erreur
-                divErrorP = document.getElementById('p_error')
-                divErrorP.innerHTML = ""
+                //Si la div erreur existe alors on va la chercher et on la stock dans une variable
+                divErr = document.querySelector(".alert_error")
+                //On la supprime
+                divErr.remove(divErr)
+                
+                //On recommence l'insertion des div et du message d'erreur
+                formulaire.prepend(divError)
+                divError.append(divErrorP)
                 divErrorP.append(check)
             }
         }

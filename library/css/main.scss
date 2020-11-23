@@ -1,13 +1,18 @@
 /**************************** DECLARATION VARIABLES ****************************/
-$color-background : #FFF5D0;
+$color-background : rgba(255, 245, 208, 1);;
 $color-text : #222f3e;
-$color-background-band : #0F222C;
-$color-a-dark : #FFF5D0;
-$color-a-dark-hover : #FFFFFF;
+$color-background-btn : rgba(15, 34, 44, 1);
+$color-a-top : #FFF5D0;
+$color-a-top-hover : #000000;
 $color-link : #079992;
 $color-link-visited : #78e08f;
+$color-back-link-visited : #5c5c5c;
 $color-background-alert-error : #F8D7D9;
 $color-background-alert-success : #D4EDD9;
+$color-btn-back-hover : #d4c3c3;
+$color-btn-hover : #000000;
+
+
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
 
@@ -21,24 +26,32 @@ $color-background-alert-success : #D4EDD9;
     padding: 0;
 }
 
+@mixin gradientBack{
+    background: linear-gradient(90deg, rgba(16,35,44,1) 0%, rgba(6,6,82,1) 50%, rgba(16,35,44,1) 100%);
+}
+
 @mixin band {
-    background-color: $color-background-band;
+    @include gradientBack();
     height: 2em;
     font-size: 0.9em;
 
 }
+
 
 @mixin weight-slim {
     font-weight: lighter;
 }
 
 @mixin btn {
-    background-color: $color-background-band;
-    color: $color-a-dark;
+    background-color: $color-background-btn;
+    color: $color-a-top;
     border: none;
     padding: 0.5rem;
     margin: 0.5rem 0;
     border-radius: 10px;
+    -webkit-box-shadow: 6px 6px 19px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 6px 6px 19px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 6px 6px 19px -9px rgba(0, 0, 0, 0.75);
 }
 
 @mixin alert {
@@ -92,6 +105,7 @@ a {
 
 a:visited {
     color: $color-link-visited;
+    background-color: $color-back-link-visited;
 }
 
 ul {
@@ -102,8 +116,8 @@ ul li {
     list-style-type: none;
 }
 
-.hidden{
-    display: none!important;
+.hidden {
+    display: none !important;
 }
 
 #container {
@@ -166,8 +180,6 @@ table {
 .btn>a {
     display: inline-block;
     width: 100%;
-
-    
 }
 
 .formDiv {
@@ -176,6 +188,12 @@ table {
 
 .center {
     text-align: center;
+}
+
+.btn:hover {
+    box-shadow: 0 0 0;
+    background-color: $color-btn-back-hover;
+    color: $color-btn-hover;
 }
 
 /**************************** CSS DIV LOGO ****************************/
@@ -211,11 +229,11 @@ table {
 }
 
 #top-band a {
-    color: $color-a-dark;
+    color: $color-a-top;
 }
 
 #top-band a:hover {
-    color: $color-a-dark-hover;
+    color: $color-a-top-hover;
 }
 
 /**************************** CSS NAVBAR ****************************/
@@ -235,11 +253,11 @@ table {
 }
 
 #navbar-top a {
-    color: $color-a-dark;
+    color: $color-a-top;
 }
 
 #navbar-top a:hover {
-    color: $color-a-dark-hover;
+    color: $color-a-top-hover;
 }
 
 /**************************** CSS ASIDE ****************************/
@@ -259,32 +277,33 @@ footer {
     grid-template-columns: 1fr 1fr;
     display: grid;
     text-align: center;
-    background-color: $color-background-band;
     color: $color-background;
+    @include gradientBack();
 }
 
 /**************************** CSS PAGE HOME ****************************/
 
-article{
+article {
     padding: 1em 1em;
 }
 
-#agri_story{
-    background-color:#dfe6e9;
+#agri_story {
+    background-color: #dfe6e9;
 }
 
-#natural_product{
+#natural_product {
     background-color: #ffeaa7;
 }
 
-#who_are_we{
+#who_are_we {
     background-color: #f1f2f6;
 }
-#natural_product_ul{
+
+#natural_product_ul {
     padding: revert;
 }
 
-.natural_product_li{
+.natural_product_li {
     list-style-type: initial;
 }
 
@@ -299,8 +318,8 @@ article{
 }
 
 .li_products {
+    @include gradientBack();
     text-align: center;
-    background-color: $color-background-band;
     color: $color-background;
     margin: 1em;
     padding: 0.5em;
@@ -363,12 +382,12 @@ fieldset>div:nth-child(4) {
     width: 100%;
 }
 
-.add_buttons{
+.add_buttons {
     @media screen and (min-width : 700px) {
         display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
-    
+
 }
 
 
@@ -377,16 +396,18 @@ fieldset>div:nth-child(4) {
     margin: 2em auto;
     width: 50%;
     font-size: small;
+
     @media screen and (min-width : 700px) {
         margin: 0.5em auto;
         width: 55%;
     }
 }
 
-.table_line{
+.table_line {
     line-height: 3em;
 }
-td:nth-child(1){
+
+td:nth-child(1) {
     text-align: left;
 }
 
@@ -457,11 +478,11 @@ td:nth-child(1){
 }
 
 .updateDiv {
-    
+
     display: grid;
     grid-template-columns: 1fr 3fr;
     text-align: left;
-    
+
     @media screen and (min-width : 700px) {
         grid-template-columns: 1fr 4fr;
     }
@@ -472,3 +493,25 @@ td:nth-child(1){
 #create_product_img {
     padding: 0.5em 0;
 }
+
+
+
+/**************************** ANIMATION DU LOGO DANS LE HEADER ****************************/
+@keyframes slidein {
+    from {
+        overflow: hidden;
+        margin-left: 100%;
+        width: 100%;
+    }
+
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+#logo {
+    animation-duration: 3s;
+    animation-name: slidein;
+}
+

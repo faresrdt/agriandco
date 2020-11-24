@@ -14,15 +14,21 @@ abstract class Database
 
     public static function getPdo(): PDO
     {
-        if (self::$instance === null) {
+        $dump = self::isDatabaseExist();
+        if ($dump === false) {
+            self::createDatabase();
+        }else{
+            if (self::$instance === null) {
 
-            self::$instance = new PDO("mysql:host=localhost;dbname=" . self::$db_name . ";charset=utf8", 'root', 'root', [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]);
+                self::$instance = new PDO("mysql:host=localhost;dbname=" . self::$db_name . ";charset=utf8", 'root', 'root', [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                ]);
+            }
+    
+            return self::$instance;
         }
-
-        return self::$instance;
+        
     }
 
     /**
@@ -96,9 +102,4 @@ abstract class Database
           ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
         $pdo->prepare($users_table)->execute();
     }
-}
-
-$dump = \Database::isDatabaseExist();
-if($dump === false){
-    \Database::createDatabase();
 }

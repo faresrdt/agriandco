@@ -3,8 +3,11 @@
 abstract class Database
 {
 
-    private static $instance = null;
-    private static $db_name = "agriandco";
+    private static $instance    = null;
+    private static $host_name   = "localhost";
+    private static $db_name     = "agriandco";
+    private static $user_name   = "root";
+    private static $password_db = "root";
     /**
      * Retourne une connexion à la base de donnée
      * 
@@ -20,7 +23,7 @@ abstract class Database
         }else{
             if (self::$instance === null) {
 
-                self::$instance = new PDO("mysql:host=localhost;dbname=" . self::$db_name . ";charset=utf8", 'root', 'root', [
+                self::$instance = new PDO("mysql:host=". self::$host_name .";dbname=" . self::$db_name . ";charset=utf8", self::$user_name , self::$password_db, [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
                 ]);

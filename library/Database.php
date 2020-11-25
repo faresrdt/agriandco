@@ -54,7 +54,7 @@ abstract class Database
     {
 
         $pdo = self::getPdo();
-        if (self::isDatabaseExist($pdo) != true) {
+        if (self::isDatabaseExist() != true) {
             $query = "CREATE DATABASE IF NOT EXISTS" . self::$db_name . "DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci";
             $pdo->prepare($query)->execute();
             self::createTables();

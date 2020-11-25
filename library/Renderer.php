@@ -40,7 +40,11 @@ class Renderer
         if (\Controllers\User::isConnected() == false and $forbidPage === true) {
             \Http::redirect('index.php');
         } else {
-            require('views/' . $pageName . '.phtml');
+            if($pageName === "connexion" and \Controllers\User::isConnected() == true){
+                \Http::redirect('index.php');
+            }else{
+                require('views/' . $pageName . '.phtml');
+            }
         }
 
         $pageContent = ob_get_clean();

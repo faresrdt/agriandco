@@ -91,7 +91,7 @@
         <table>
             <tbody>
                 <?php foreach ($favs as $key => $values) : ?>
-                    <tr>
+                    <tr class="table_line">
                         <td><?= $values ?></td>
                         <td><a href="index.php?ctrl=user&task=deleteFav&favName=<?= $values ?>&page=userSpace&id=<?= $item['id'] ?>" class="btn" title="Supprimer">Supprimer</a></td>
                     </tr>

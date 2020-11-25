@@ -13,6 +13,14 @@ $color-btn-back-hover : #d4c3c3;
 $color-btn-hover : #000000;
 
 
+/*
+*  Mobile first
+*
+*  Media Queries :
+*  >700px  -> iPad
+*  >1200px -> Desktop
+*/
+
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
 
@@ -48,6 +56,7 @@ $color-btn-hover : #000000;
     border: none;
     padding: 0.5rem;
     margin: 0.5rem 0;
+    font-size: 0.6rem;
     border-radius: 10px;
     -webkit-box-shadow: 6px 6px 19px -9px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 6px 6px 19px -9px rgba(0, 0, 0, 0.75);
@@ -93,7 +102,7 @@ header {
     background-position: center;
     text-shadow: 2px 2px 0px rgba(150, 150, 150, 0.5);
 
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         height: fit-content;
     }
 }
@@ -125,13 +134,22 @@ ul li {
     display: grid;
     grid-template-columns: 1fr;
 
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         grid-template-columns: 4fr 1fr;
     }
 }
 
 #principal-content {
+    width: 90%;
+    margin: 0 auto;
+
+    //iPad
     @media screen and (min-width : 700px) {
+        width: 100%;
+    }
+
+    //Bureau
+    @media screen and (min-width : 1200px) {
         padding: 0 3em;
         width: 75%;
         margin: auto;
@@ -201,7 +219,7 @@ table {
     display: grid;
     align-items: center;
 
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         height: 25em;
     }
 }
@@ -210,7 +228,7 @@ table {
     width: 25%;
     margin: 0 auto;
 
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         width: 20em;
     }
 }
@@ -250,6 +268,7 @@ table {
     grid-template-rows: 1fr;
     align-items: center;
     text-align: center;
+    font-size: 0.8rem;
 }
 
 #navbar-top a {
@@ -311,7 +330,7 @@ article {
 
 
 #products {
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         display: grid;
         grid-template-columns: 1fr 1fr;
     }
@@ -324,7 +343,7 @@ article {
     margin: 1em;
     padding: 0.5em;
 
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         width: 30%;
         margin: 1em auto;
     }
@@ -346,7 +365,7 @@ article {
 }
 
 .blog_article_img img {
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         width: 50%;
 
     }
@@ -356,7 +375,7 @@ article {
 
 /**************************** CSS PAGE CONTACT ****************************/
 #contact_form {
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         @include desktopForm();
     }
 
@@ -383,7 +402,13 @@ fieldset>div:nth-child(4) {
 }
 
 .add_buttons {
+
     @media screen and (min-width : 700px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media screen and (min-width : 1200px) {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -397,7 +422,7 @@ fieldset>div:nth-child(4) {
     width: 50%;
     font-size: small;
 
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         margin: 0.5em auto;
         width: 55%;
     }
@@ -420,7 +445,7 @@ td:nth-child(1) {
 }
 
 #update_img img {
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         width: 100%;
     }
 
@@ -440,14 +465,14 @@ td:nth-child(1) {
 /**************************** CSS PAGE PRODUIT ****************************/
 
 #update_product_img {
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         width: 50%;
         margin: auto;
     }
 }
 
 #update_product_title {
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         display: grid;
     }
 }
@@ -455,7 +480,7 @@ td:nth-child(1) {
 /**************************** CSS PAGE CONNEXION INSCRIPTION ****************************/
 
 #connexion_inscription_block {
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         @include desktopForm();
     }
 }
@@ -471,7 +496,7 @@ td:nth-child(1) {
 }
 
 #userspace_form {
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         @include desktopForm();
     }
 
@@ -483,7 +508,7 @@ td:nth-child(1) {
     grid-template-columns: 1fr 3fr;
     text-align: left;
 
-    @media screen and (min-width : 700px) {
+    @media screen and (min-width : 1200px) {
         grid-template-columns: 1fr 4fr;
     }
 }

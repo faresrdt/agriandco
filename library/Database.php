@@ -41,7 +41,7 @@ abstract class Database
      */
     public static function isDatabaseExist(): bool
     {
-        $connexionBDD = mysqli_connect('localhost', 'root', 'root');
+        $connexionBDD = mysqli_connect(self::$host_name, self::$user_name, self::$password_db);
         $selectBDD = mysqli_select_db($connexionBDD, self::$db_name);
 
         return $selectBDD;

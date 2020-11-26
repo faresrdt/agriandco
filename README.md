@@ -7,6 +7,10 @@ Créer en utilisant les langages appris en formation :
 - SQL
 - JavaScript
 
+Un compte administrateur existe dans le site avec son espace admin, les identifiants sont les suivants :
+E-mail : admin@3wa.fr
+Mot de passe : admin3wa
+
 Codé entièrement par moi même et selon les consignes suivantes : 
 
 RNCP 5 - Règles d'évaluation technique

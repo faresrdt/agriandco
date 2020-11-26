@@ -20,18 +20,19 @@
                     <label for="content">Contenu :</label>
                     <textarea name="content" id="content" cols="30" rows="10"><?= $item['content'] ?></textarea>
                 </div>
-
-                <button class="btn btn_form update_article_form">Mettre à jour</button>
+                <div class="forBtn center">
+                    <button class="btn btn_form update_article_form">Mettre à jour</button>
+                </div>
             </fieldset>
         </div>
     </form>
 <?php else : ?>
     <!-- PARTIE USER -->
-        <h1 id="article_title" class="center"><?= $item['title'] ?></h1>
-        <small>Date de publication : <?= $item['created_at'] ?></small>
-        <div id="article_img"><img src="library/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>"></div>
+    <h1 id="article_title" class="center"><?= $item['title'] ?></h1>
+    <small>Date de publication : <?= $item['created_at'] ?></small>
+    <div id="article_img"><img src="library/img/articles/<?= $item['img'] ?>" alt="<?= $item['title'] ?>"></div>
 
-        <p><?= $item['content'] ?></p>
+    <p><?= $item['content'] ?></p>
 
 
 <?php endif; ?>

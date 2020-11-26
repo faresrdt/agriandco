@@ -59,27 +59,23 @@
 
 <table>
     <thead>
-        <tr>
+        <tr class="adm_products">
             <th>Titre</th>
             <th>Type</th>
             <th>Stock</th>
-            <th>Modifier</th>
-            <th>Supprimer</th>
         </tr>
-
-
     </thead>
 
     <tbody>
         <?php foreach ($allProducts as $produit) : ?>
-            <tr class="table_line">
-
-                <td><?= $produit['title'] ?></td>
+            <tr class="table_line adm_products">
+                <td><strong><?= $produit['title'] ?></strong></td>
                 <td><?= $produit['type'] ?></td>
                 <td><?= $produit['stock'] ?></td>
                 <td><a href="index.php?ctrl=produits&task=read&page=produit&id=<?= $produit['id'] ?>" class="btn btn_upd_del" title="Modifier">Modifier</a></td>
                 <td><a href="index.php?ctrl=produits&task=delete&page=adminSpace&id=<?= $produit['id'] ?>" class="btn btn_upd_del" title="Supprimer">Supprimer</a></td>
             </tr>
+
         <?php endforeach; ?>
 
     </tbody>

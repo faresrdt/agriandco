@@ -429,9 +429,15 @@ fieldset>div:nth-child(4) {
 }
 
 .table_line {
-    line-height: 3em;
+    line-height: 2em;
+    border-bottom: solid black 1px;
+    padding-bottom: 0.5em;
 }
 
+.amd_products{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
 td:nth-child(1) {
     text-align: left;
 }

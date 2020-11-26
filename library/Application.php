@@ -16,13 +16,27 @@ class Application
         $task = "index";
 
         //On controle le nom du controller à appeler
-        if(!empty($_GET['ctrl'])){
-            $controllerName = ucfirst($_GET['ctrl']);
+        if(!isset($_GET['ctrl'])){
+            $controllerName = $controllerName;
+        }else{
+            if(!empty($_GET['ctrl'])){
+                $controllerName = ucfirst($_GET['ctrl']);
+            }
         }
+    
+        
         //On controle le nom de la tache à appeler
-        if(!empty($_GET['task'])){
-            $task = ucfirst($_GET['task']);
+        if(!isset($_GET['task'])){
+            $controllerName = "Home";
+            $task = $task;
+        }elseif($controllerName === "Home"){
+            $task = $task;
+        }else{
+            if(!empty($_GET['task'])){
+                $task = ucfirst($_GET['task']);
+            }
         }
+        
 
         //On concatène pour obtenir le chemin avec le nom du controller
         $controllerName = "\controllers\\" . $controllerName;

@@ -19,7 +19,7 @@ class Renderer
         ob_start();
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
-        } 
+        }
         $allProducts = $productModel->queryAll(['order' => 'date_appro DESC', 'table' => 'produits']);
 
         $allArticles = $articleModel->queryAll(['order' => 'created_at DESC', 'table' => 'articles']);
@@ -37,15 +37,28 @@ class Renderer
             }
         }
 
+        $allPages = ['adminSpace', 'article', 'blog', 'connexion', 'contact', 'home', 'Home', 'newArticle', 'newProduit', 'newUser', 'produit', 'produits', 'sign', 'userSpace'];
+
+        $errorPage = false;
+        if (in_array($pageName, $allPages)) {
+
+            $errorPage = true;
+        } else {
+            $pageName = "home";
+            \Http::redirect('index.php');
+        }
+
         if (\Controllers\User::isConnected() == false and $forbidPage === true) {
             \Http::redirect('index.php');
         } else {
-            if($pageName === "connexion" and \Controllers\User::isConnected() == true){
+            if ($pageName === "connexion" and \Controllers\User::isConnected() == true) {
                 \Http::redirect('index.php');
-            }else{
+            } else {
                 require('views/' . $pageName . '.phtml');
             }
         }
+
+
 
         $pageContent = ob_get_clean();
 

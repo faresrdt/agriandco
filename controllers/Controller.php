@@ -17,6 +17,11 @@ abstract class Controller
         $this->model = new $this->modelName;
     }
 
+    public function __call($task, $arguments)
+    {
+        \Http::redirect('index.php');
+    }
+
     /**
      * Fonction statique pour récupérer le nom de la page à afficher dans l'URL
      * @return string $page
@@ -254,7 +259,7 @@ abstract class Controller
             $pageTitle = $item['title'];
         } elseif (isset($item['name'])) {
             $pageTitle = $item['name'];
-        }else {
+        } else {
             $pageTitle = self::getTitle();
         }
         $pageName = self::getPage();

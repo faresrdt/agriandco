@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le :  mar. 24 nov. 2020 à 15:15
+-- Généré le :  ven. 27 nov. 2020 à 11:24
 -- Version du serveur :  5.7.26
 -- Version de PHP :  7.4.2
 
@@ -107,9 +107,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role`, `name`, `firstname`, `mail`, `password`, `fav`, `created_at`) VALUES
-(25, 'admin', 'BOUAOUINA', 'Fares', 'fares.alib@gmail.com', '$2y$10$sMbSqChVnehDb9wA/EY4Ae6YHQT9VtaaSIZQr7rC47qEo.fbVf4Dm', NULL, '2020-09-07 07:16:16'),
-(31, 'user', 'Usee', 'user', 'user@user.fr', '$2y$10$XLhCRhRXJLNm3Ml1Qa5SOeGQ36XrghLPFoIlBOV.U7a0VVG88F5ki', NULL, '2020-11-10 08:24:28'),
-(32, 'user', 'test', 'test', 'test@test.fr', '$2y$10$wzj8nv9KXM8ZTMR9TpIq/.2.HTRhpH5YhBcpdlrVM.zUOQ0nbtE6i', 'Carotte', '2020-11-16 11:45:05');
+(33, 'admin', 'Admin_3WA', 'Admin', 'admin@3wa.fr', '$2y$10$BTmmQLbP/90CXer1fCaDqe3q3wxjN/s807.ZVb8cjzzxlvlMv1MOK', NULL, '2020-11-26 11:14:20');
 
 --
 -- Index pour les tables déchargées
@@ -153,4 +151,4 @@ ALTER TABLE `produits`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;

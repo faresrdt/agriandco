@@ -8,8 +8,7 @@ Créer en utilisant les langages appris en formation :
 - JavaScript
 
 Un compte administrateur existe dans le site avec son espace admin, les identifiants sont les suivants :
-E-mail : admin@3wa.fr
-Mot de passe : admin3wa
+Me les demander.
 
 Codé entièrement par moi même et selon les consignes suivantes : 
 
